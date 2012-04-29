@@ -1,8 +1,7 @@
-
-Name:       libXfixes
+Name:       libxfixes
 Summary:    X.Org X11 libXfixes runtime library
 Version:    4.0.5
-Release:    1
+Release:    2.6
 Group:      System/Libraries
 License:    MIT
 URL:        http://www.x.org/
@@ -34,8 +33,9 @@ Xorg X11 libXfixes development package
 
 
 %build
-
-%reconfigure --disable-static
+export LDFLAGS+=" -Wl,--hash-style=both -Wl,--as-needed"
+autoreconf -vfi
+%configure --disable-static
 make %{?jobs:-j%jobs}
 
 %install
@@ -70,3 +70,19 @@ rm -rf %{buildroot}
 #%dir %{_mandir}/man3x
 %doc %{_mandir}/man3/Xfixes.3*
 
+%changelog
+* Fri May 13 2011 Li Peng <peng.li@intel.com> - 5.0
+- libXfixes 5.0
+* Sat Feb 27 2010 Anas Nashif <anas.nashif@intel.com> - 4.0.4
+- Updated with latest spectacle
+- Include YAML file in source rpm
+* Fri Dec 11 2009 Li Peng <peng.li@intel.com> 4.0.4
+- libXfixes 4.0.4
+* Thu Dec 18 2008 Arjan van de Ven <arjan@linux.intel.com> 4.0.3
+- Fix buildrequires
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 4.0.3
+- Update spec file using latest spec-builder
+* Tue Dec 16 2008 Anas Nashif <anas.nashif@intel.com> 4.0.3
+- Update spec file using latest spec-builder
+* Thu Dec 11 2008 Arjan van de Ven <arjan@linux.intel.com> 4.0.3
+- Clean up specfile
