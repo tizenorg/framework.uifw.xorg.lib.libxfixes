@@ -63,4 +63,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libXfixes.so
 %{_libdir}/pkgconfig/xfixes.pc
 #%{_mandir}/man3/Xfixes.3*
-
