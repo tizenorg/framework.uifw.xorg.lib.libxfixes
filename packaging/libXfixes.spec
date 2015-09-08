@@ -18,7 +18,7 @@ X Fixes library.
 %package devel
 Summary: Development files for %{name}
 Group: Development/Libraries
-Provides: libxfixes-devel 
+Provides: libxfixes-devel
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 
@@ -35,7 +35,8 @@ make %{?jobs:-j%jobs}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
+mkdir -p %{buildroot}/usr/share/license
+cp -af COPYING %{buildroot}/usr/share/license/%{name}
 make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 
 # We intentionally don't ship *.la files
@@ -51,7 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING README ChangeLog
+/usr/share/license/%{name}
+#%doc AUTHORS COPYING README ChangeLog
 %{_libdir}/libXfixes.so.3
 %{_libdir}/libXfixes.so.3.1.0
 
